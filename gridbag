@@ -1,0 +1,193 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+public class WordOrderFun{
+
+	
+	
+	public static void main(String[] args) 
+	{
+		
+		JFrame frame = new wordFun();
+		frame.setTitle("Word Order Game");
+		frame.setSize(700, 600);//700/600
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}	
+}
+class wordFun extends JFrame implements ActionListener {
+	
+	JLabel[] Instr, wordLabels;	
+	JLabel heading,response,goesBefore,instructions1,instructions2;
+	JTextField first, second;
+	JButton submit,clear;
+	JPanel topPnl, InstructionPnl,optionsPnl,InputPnl,buttonPnl,messagePnl,mainPnl;
+
+	//row , colum , VS, HS
+	//GridLayout layout = new GridLayout(3,1,5,5);
+	public wordFun() {
+		
+		
+		JPanel mainPnl = new JPanel(new GridBagLayout());
+		//mainPnl.setBackground(Color.GREEN); 
+		mainPnl.setBorder(BorderFactory.createEmptyBorder(8,8,8,8));
+		add(mainPnl, BorderLayout.CENTER); //adding panel to center of frame
+		
+		GridBagConstraints gc = new GridBagConstraints(); //this is used to specify where to put different components in the GridBag
+		gc.fill = GridBagConstraints.HORIZONTAL; //to specify that if components are of diff size, fill it horizontally
+		gc.insets = new Insets(10, 10, 10, 10); //padding betwwn diff components
+		
+		JPanel topPnl = new JPanel(new FlowLayout(FlowLayout.LEFT,10,10));
+		//topPnl.setBackground(Color.BLUE); 
+
+		JPanel InstructionPnl = new JPanel(new FlowLayout(FlowLayout.LEFT,10,10));
+		//InstructionPnl.setBackground(Color.GREEN); 
+		///InstructionPnl.setPreferredSize(new Dimension(150, 200));
+		
+		JPanel optionsPnl = new JPanel();
+		optionsPnl.setBackground(Color.BLUE); 
+		Dimension size = getPreferredSize();
+		size.height = 50;
+		setPreferredSize(size);
+		optionsPnl.setPreferredSize(getPreferredSize());
+		
+		
+		JPanel inputPnl = new JPanel();
+		//inputPnl.setBackground(Color.GREEN); 
+			
+		
+		JPanel buttonPnl = new JPanel(new FlowLayout(FlowLayout.CENTER,10,10));
+		//buttonPnl.setBackground(Color.BLUE); 
+				
+		
+		JPanel messagePnl = new JPanel();
+		//messagePnl.setBackground(Color.GREEN); 
+		
+		this.setLayout(new BorderLayout(5,5));
+		add(mainPnl,BorderLayout.CENTER);
+		mainPnl.add(topPnl);
+		mainPnl.add(InstructionPnl);
+		mainPnl.add(optionsPnl);
+		mainPnl.add(inputPnl);
+		mainPnl.add(buttonPnl);
+		mainPnl.add(messagePnl);
+		
+		
+		
+		heading       = new JLabel("Fun With Words");
+		
+		topPnl.add(heading);
+		
+		response      = new JLabel();
+		
+		instructions1 = new JLabel("Hey kids! Want to practice you typing and word ordering skills?");
+		
+		InstructionPnl.add(instructions1);
+		
+		instructions2 = new JLabel("Pick two words from the following list, enter them in the boxes in the correct order, and then press the Done key");
+		
+		InstructionPnl.add(instructions2);
+		
+		goesBefore    = new JLabel("goes before");
+		
+		inputPnl.add(goesBefore);
+		
+		first         = new JTextField(8);
+		
+		inputPnl.add(first);
+		
+		second        = new JTextField(8);
+		
+		inputPnl.add(second);
+		
+		submit        = new JButton("Submit");
+		
+		buttonPnl.add(submit);
+		
+		clear         = new JButton("Clear");
+		
+		buttonPnl.add(clear);
+		
+		
+		
+	
+		
+		clear.addActionListener(this);
+		submit.addActionListener(this);
+	
+		
+
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		String firstWord;
+		String secondWord;
+		
+		if(first.getText().isEmpty() || second.getText().isEmpty())
+		{
+			System.out.println("Enter words in both boxes. Then press done.");
+		}
+		//else if()
+		//{
+		//	System.out.println("Neither entry is in the word list.");
+		//}
+		///else if()
+		//{
+		//	System.out.println("First entry not in word list – check spelling.");
+		//}
+		//else if()
+		//{
+		//	System.out.println("Second entry not in word list – check spelling.");
+		//}
+		else if(first.getText().equals(second.getText()))
+		{
+			System.out.println("You entered the same words. Try again.");
+		}
+		//else if()
+		//{
+		//	System.out.println("Wrong. Try again. ");
+		//}
+		//else
+		//{
+		//	System.exit(0);
+		//}
+		
+		
+		
+		
+		
+	
+		
+		dispose();
+		
+	}
+}
+		
+	
